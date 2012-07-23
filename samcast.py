@@ -12,11 +12,16 @@ import os
 import libxml2, libxslt
 import re, ConfigParser
 import urllib
+from subprocess import call
 
 
 def sampodder(podcast):
 	title = podcast
 	rss_feed = config.get(podcast, 'rss-feed')
+	thispodcastdir = podcast_dir + podcast
+	
+	if not os.path.exists(thispodcastdir):
+	        os.makedirs(thispodcastdir)
 	
 	try:
 		podnumber = int(config.get(podcast, 'podnumber'))	
