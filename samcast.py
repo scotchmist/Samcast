@@ -60,7 +60,11 @@ if __name__ == "__main__":
 	config = ConfigParser.ConfigParser()
 	config.read(config_file)
 	podcasts=config.sections()
-	download_log = open(podcast_dir+'downloads.log', 'a+')
+	
+	if not os.path.exists(podcast_dir + '/downloads.log'):
+		open(podcast_dir + '/downloads.log', 'w+').close()
+		
+	download_log = open(podcast_dir + '/downloads.log', 'r+')
 	
 	logstring = download_log.read()
 	
