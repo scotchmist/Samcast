@@ -12,7 +12,6 @@ import os
 import libxml2, libxslt
 import re, ConfigParser
 import urllib
-from subprocess import call
 
 
 def sampodder(podcast):
@@ -29,7 +28,7 @@ def sampodder(podcast):
 		podnumber = -1
 	
 	try:
-		styledoc = libxml2.parseFile("parse_enclosure.xsl")
+		styledoc = libxml2.parseFile(samcast_dir + "parse_enclosure.xsl")
 		style = libxslt.parseStylesheetDoc(styledoc)
 		doc = libxml2.parseFile(rss_feed)
 		result = style.applyStylesheet(doc, None)
@@ -48,7 +47,7 @@ def sampodder(podcast):
 		else:
 			episode_title=re.split('\/|=|\?', episode)[-1]
 			#If you want to do a dry-run, just comment out the line below.
-			urllib.urlretrieve(episode, podcast_dir + title + '/'+ episode_title)
+			urllib.urlretrieve(episode, thispodcastdir + '/'+ episode_title)
 			download_log.write(episode + '\n')
 
 
@@ -56,11 +55,12 @@ if __name__ == "__main__":
 	
 	home='/Users/sam/'
 	podcast_dir= home + 'podcasts/'
-	config_file= './sp.conf'
+	samcast_dir='/Users/sam/Samcast/'
+	config_file= samcast_dir + 'sp.conf'
 	config = ConfigParser.ConfigParser()
 	config.read(config_file)
 	podcasts=config.sections()
-	download_log = open('./downloads.log', 'a+')
+	download_log = open(podcast_dir+'downloads.log', 'a+')
 	
 	logstring = download_log.read()
 	
