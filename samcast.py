@@ -17,7 +17,7 @@ import urllib
 def sampodder(podcast):
 	title = podcast
 	rss_feed = config.get(podcast, 'rss-feed')
-	thispodcastdir = podcast_dir + podcast
+	thispodcastdir = os.path.join(podcast_dir + podcast)
 	
 	if not os.path.exists(thispodcastdir):
 	        os.makedirs(thispodcastdir)
@@ -53,22 +53,20 @@ def sampodder(podcast):
 
 if __name__ == "__main__":
 	
-	home='/Users/sam/'
-	podcast_dir= home + 'podcasts/'
-	samcast_dir='/Users/sam/Samcast/'
-	config_file= samcast_dir + 'sp.conf'
+	home=os.path.expanduser('~')
+	podcast_dir = '/storage/greyarea/podcasts'
+	samcast_dir = os.path.join(home + '/Samcast/')
+	config_file = os.path.join(samcast_dir + 'sp.conf')
 	config = ConfigParser.ConfigParser()
 	config.read(config_file)
-	podcasts=config.sections()
+	podcasts = config.sections()
 	
 	if not os.path.exists(podcast_dir + '/downloads.log'):
 		open(podcast_dir + '/downloads.log', 'w+').close()
+
+	with  open(podcast_dir + '/downloads.log', 'r+') as download_log:
+		logstring = download_log.read()
+		for p in podcasts:
+			sampodder(p)
 		
-	download_log = open(podcast_dir + '/downloads.log', 'r+')
-	
-	logstring = download_log.read()
-	
-	for p in podcasts:
-		sampodder(p)
 		
-	download_log.close()
