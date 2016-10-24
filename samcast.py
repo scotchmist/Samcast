@@ -77,12 +77,10 @@ if __name__ == "__main__":
         
 
     with open(download_log, 'rw+') as dl:
-        print(download_log)
         logstring = dl.read()
         for podcast in podcasts:
             try:
                 podcast_file = sampodder(args.podcast_dir, podcast, config, logstring)
-                print(podcast_file)
                 dl.write(podcast_file + '\n')
             except libxml2.parserError:
                 pass
