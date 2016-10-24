@@ -44,8 +44,7 @@ def sampodder(podcast_dir, podcast, config, logstring):
             return None
         else:
             episode_title = re.split('\/|=|\?', episode)[-1]
-            #If you want to do a dry-run, just comment out the line below.
-            print(episode, thispodcastdir + '/'+ episode_title)
+            #If you want to do a dry-run, just comment out the lines below.
             episode_path = os.path.join(thispodcastdir, episode_title)
             response = requests.get(episode, stream=True)
             with open(episode_path, 'wb') as ep:
@@ -82,7 +81,6 @@ if __name__ == "__main__":
         for podcast in podcasts:
             try:
                 podcast_file = sampodder(args.podcast_dir, podcast, config, logstring)
-                print(podcast_file)
                 dl.write(podcast_file + '\n')
             except libxml2.parserError:
                 pass
