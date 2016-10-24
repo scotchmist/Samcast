@@ -1,32 +1,6 @@
-The Samcast Podcast Downloading Tool
-
 Created by Sam Howson on 2012-07-21.
 
-This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. 
-To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/
+Simple podcast downloader written in Python 2.
 
-
-This script will download podcasts based on RSS feeds that you give it. It keeps track of ones that it has downloaded before, so that it doesn't download the same file twice. It can be run from a cron job. It also has the ability to download only certain episodes, such as the most recent 5 episodes for example, so that you don't download every single episode since it started (unless that's what you want).
-
-This script was inspired by the bashpodder.sh shell script.
-
-The podcasts are stored in a folder of your choice, based on the title set. For example, as it is currently set in the config file, the Music For Programming podcast is stored in ~/podcasts/musicforprogramming/.
-
-
-Requirements:
-
-This was built on Mac OS X 10.7 and Python 2.7. It should run on any computer with a vaguely modern version of Python on it. (Python 3 hasn't been tested.)
-
-You will need to download and install the libxml2 Python library if it is not currently installed. This should be available on your package manager of choice, or you can download and install it manually from here- ftp://xmlsoft.org/libxml2/python/ .
-
-
-HOWTO:
-
-To get this running, just download the files in the repo, and check that the home directory in the script is correct, and that you want the files to go there. You can then add your podcasts to the sp.conf file.
-
-
-Other notes:
-
-Got any comments? My email address is sam at samhowson dot co dot uk .
 
 I've left some of my favourate podcasts in the config file. Enjoy! :)
